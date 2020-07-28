@@ -16,11 +16,11 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('reference_no');
-            $table->double('tax');
-            $table->double('service_charge');
-            $table->double('total_amount_cents');
-            $table->boolean('is_walkin');
-            $table->string('status');
+            $table->double('tax')->nullable();
+            $table->float('service_charge', 8, 2)->nullable();
+            $table->float('total_amount_cents', 8, 2)->nullable();
+            $table->boolean('is_walkin')->default(true);
+            $table->string('status')->default('Pending');
             $table->timestamps();
         });
     }

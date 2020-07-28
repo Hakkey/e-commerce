@@ -19,5 +19,9 @@ Route::get('cart', 'CartController@viewCart');
 
 Route::post('updatequantity/{id}', 'CartController@updatequantity');
 Route::delete('removeorder/{id}', 'CartController@removeorder');
+Route::post('storeorder/{reference_no}', 'CartController@storeorder');
+
+Route::get('summaryorder/{id}', 'CartController@summaryorder');
+Route::delete('neworder/{id}', 'CartController@neworder');
 
 

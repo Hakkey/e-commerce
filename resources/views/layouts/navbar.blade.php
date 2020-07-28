@@ -11,7 +11,7 @@
         </li>
         
         <li class="nav-item active">
-          <a class="nav-link" href="cart">Cart  <span class="badge badge-secondary"><?php echo App\Http\Controllers\CartController::getCartCount(); ?></span></span></a>
+          <a class="nav-link" href="/cart">Cart  <span class="badge badge-secondary"><?php echo App\Http\Controllers\CartController::getCartCount(); ?></span></span></a>
         </li>
       </ul>
     </div>

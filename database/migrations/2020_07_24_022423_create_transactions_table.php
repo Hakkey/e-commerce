@@ -16,9 +16,9 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('order_id');
-            $table->string('payment_method');
-            $table->string('status');
-            $table->double('paid_amount_cents');
+            $table->string('payment_method')->nullable();
+            $table->string('status')->default('Pending');
+            $table->float('paid_amount_cents', 8, 2)->nullable();
             $table->timestamps();
         });
     }
