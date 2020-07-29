@@ -21,7 +21,7 @@
             <td class="test" >{{ $orderItem->cost_per_item }}</td>
             <td item-quantity="{{ $orderItem->quantity }}">
               <button class="btn btn-sm btn-danger btnDecrease">-</button>
-              <input type="text" class="inputQuantity" value="{{ $orderItem->quantity }}">
+              <input type="text" class=" inputQuantity" style="width: 20%;" value="{{ $orderItem->quantity }}">
               <button class="btn btn-sm btn-success btnIncrease" >+</button>
             </td>
             <td class="totalItem">{{ $orderItem->quantity * $orderItem->cost_per_item  }}</td>
