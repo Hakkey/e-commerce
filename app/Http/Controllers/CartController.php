@@ -156,9 +156,18 @@ class CartController extends Controller
         
     }
 
-    public function removeorder($id)
+    public function removeorder(Request $request, $id)
     {
+        $order_id = $request->order_id;
         OrderItem::where('item_id', '=', $id)->delete();
+
+        $order_items = OrderItem::all();
+
+        if(count($order_items) == 0)
+        {
+            Transaction::where('order_id', '=', $order_id)->delete();
+            Order::where('id', '=', $order_id)->delete();
+        }
     }
 
     public function summaryorder($id){

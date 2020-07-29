@@ -1,72 +1,81 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
-@section('content')
-  <div class="row mb-4">
-    <div class="col">
-      <table class="table table-borderless">
-        <thead>
-          <tr class="table-primary">
-            <th scope="col">Product</th>
-            <th scope="col">Price</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Cost (RM)</th>
-          </tr>
-        </thead>
-        <tbody>
-          @foreach ($orderItems as $orderItem)
-          <tr class="rowKey" key="{{ $orderItem->order_id }}" >
-            <td>{{ $orderItem->product_name }}</td>
-            <td class="test" >{{ $orderItem->cost_per_item }}</td>
-            <td item-quantity="{{ $orderItem->quantity }}">
-              <p class="inputQuantity">{{ $orderItem->quantity }} </p>
-            </td>
-            <td class="totalItem">{{ $orderItem->quantity * $orderItem->cost_per_item  }}</td>
-          </tr>
-          @endforeach
-          <tr>
-            <td colspan="3">order</td>
-            <td id="subTotal">RM</td>
-          </tr>
-          <tr>
-            <td colspan="3">No. of Items</td>
-            <td id="noItems"></td>
-          </tr>
-          <tr>
-            <td colspan="3">Tax (6%)</td>
-            <td id="tax"></td>
-          </tr>
-          <tr class="table-primary" style="border-top: 1px solid">
-            <td colspan="3">Total</td>
-            <td id="allTotal"></td>
-          </tr>
-          <tr>
-            <td colspan="3">Total paid</td>
-            <td>{{ $transaction->paid_amount_cents }}</td>
-          </tr>
-          
-          <tr class="table-primary">
-            <td colspan="3">Status</td>
-            <td>{{ $transaction->status }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <div class="btn btn-secondary" id="newOrder">
-        New Order
+<body>
+  <div class="container mt-5 mb-5">
+    <div class="row">
+      <div class="col">
+        <table class="table table-borderless">
+          <thead>
+            <tr class="table-primary">
+              <th scope="col">Product</th>
+              <th scope="col">Price</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Cost (RM)</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($orderItems as $orderItem)
+            <tr class="rowKey" key="{{ $orderItem->order_id }}" >
+              <td>{{ $orderItem->product_name }}</td>
+              <td>{{ $orderItem->cost_per_item }}</td>
+              <td item-quantity="{{ $orderItem->quantity }}">
+                <p class="inputQuantity">{{ $orderItem->quantity }} </p>
+              </td>
+              <td class="totalItem">{{ $orderItem->quantity * $orderItem->cost_per_item  }}</td>
+            </tr>
+            @endforeach
+            <tr>
+              <td colspan="3">order</td>
+              <td id="subTotal">RM</td>
+            </tr>
+            <tr>
+              <td colspan="3">No. of Items</td>
+              <td id="noItems"></td>
+            </tr>
+            <tr>
+              <td colspan="3">Tax (6%)</td>
+              <td id="tax"></td>
+            </tr>
+            <tr class="table-primary" style="border-top: 1px solid">
+              <td colspan="3">Total</td>
+              <td id="allTotal"></td>
+            </tr>
+            <tr>
+              <td colspan="3">Total paid</td>
+              <td>{{ $transaction->paid_amount_cents }}</td>
+            </tr>
+            
+            <tr class="table-primary">
+              <td colspan="3">Status</td>
+              <td>{{ $transaction->status }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-        
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="btn btn-secondary" id="newOrder">
+          New Order
+        </div>
+          
+      </div>
     </div>
   </div>
-@endsection
-
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+
 
 <script>
   $(document).ready(function(){
@@ -146,3 +155,7 @@
     }
   });
 </script>
+
+
+</body>
+</html>

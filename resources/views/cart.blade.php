@@ -1,7 +1,6 @@
 @extends('layouts.app')
 <head>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </head>
 @section('content')
   <div class="row">
@@ -51,9 +50,9 @@
 
   <div class="row">
     <div class="col text-center">
-      <div class="btn btn-danger">
+      <a class="btn btn-danger text-white" id="btnCancel">
         Cancel
-      </div>
+      </a>
       <div class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
         Checkout
       </div>
@@ -116,6 +115,7 @@
 @endsection
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 <script>
   $(document).ready(function(){
@@ -128,10 +128,11 @@
     $('.btnDecrease').on('click', function(){
       var quantity = parseInt($(this).parent('td').find('input').val());
       var price = parseFloat($(this).parents('tr').find('td.test').text());
+      var id = $(this).parents('tr').attr('key');
+      var order_id = $('.rowKey').attr('order-id');
 
       quantity = quantity - 1;
 
-      var id = $(this).parents('tr').attr('key');
 
       $.ajax({
         type: "POST",
@@ -151,12 +152,13 @@
           data: {
             "_token": "{{ csrf_token() }}",
             id: id,
+            order_id:order_id,
           },
           success: function(result) {
             // alert('ok');
           },
           error: function(result) {
-            alert('error');
+            alert('');
           }
         });
         $(this).parents('tr').remove();
@@ -260,6 +262,36 @@
           }).then((result) => {
             if (result.value) {
               window.location.href = '/summaryorder/' + order_id;
+            }
+          })
+        },
+        error: function(result) {
+          alert('error');
+        }
+      });
+    })
+
+    $('#btnCancel').on('click', function(){
+
+      var order_id = $('.rowKey').attr('order-id');
+
+      $.ajax({
+        type: "DELETE",
+        url: "/neworder/"+ order_id,
+        data: {
+          "_token": "{{ csrf_token() }}",
+          order_id: order_id,
+        },
+        success: function(result) {
+          Swal.fire({
+            title: 'Done',
+            text: "Your cart has been emptied.",
+            icon: 'success',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok!'
+          }).then((result) => {
+            if (result.value) {
+              window.location.href = '/';
             }
           })
         },

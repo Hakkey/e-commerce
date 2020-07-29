@@ -1,10 +1,5 @@
 
 @extends('layouts.app')
-
-<head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-</head>
 @section('content')
 {{-- <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -62,6 +57,8 @@
 @endsection
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 <script>
   $( document ).ready(function() {
     $(".card").on('click', function(event){
