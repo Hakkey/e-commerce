@@ -90,10 +90,7 @@
         $('#modal-total').text(calc_allTotal().toFixed(2));
 
         $('#newOrder').on('click', function(){
-
           var order_id = $('.rowKey').attr('key');
-
-          console.log(order_id);
 
             $.ajax({
             type: "DELETE",
